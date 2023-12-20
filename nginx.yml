@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Install packages
+      yum:
+        name: nginx
+        state: present
+    - name: start nginx server
+      service:
+        name: nginx
+        state: started
+        enable: true
+    - name: deploy static website
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/
