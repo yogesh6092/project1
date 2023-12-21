@@ -1,8 +1,5 @@
 ---
 - hosts: webservers
-  step:
-        - apt-get update && apt-get -qq install git-ftp ssh
-        - ssh -p 22 -i ~/home/admin/.ssh/id_rsa $admin@${hosts} "touch test"
   become: True
   tasks:
     - name: Install packages
