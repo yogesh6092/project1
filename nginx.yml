@@ -1,5 +1,11 @@
 ---
 - hosts: webservers
+  fix-permissions:
+  - step:
+      name: "Fix Permissions"
+      script:
+        - apt-get update && apt-get -qq install git-ftp ssh
+        - ssh -p 22 -i ~/home/admin/.ssh/id_rsa $SSH_USER@$SSH_HOST "touch test"
   become: True
   tasks:
     - name: Install packages
